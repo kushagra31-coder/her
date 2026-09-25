@@ -376,8 +376,25 @@ section { position: relative; transition: background 0.8s ease; }
   color: #fff; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
 }
 .video-modal-frame { width: min(92vw, 460px); }
+.video-modal-stage { position: relative; }
 .video-modal-el { width: 100%; aspect-ratio: 9 / 16; max-height: 76vh; object-fit: contain; border-radius: 14px; background: #000; display: block; }
 .video-modal-cap { text-align: center; font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: var(--rose-pale); margin-top: 14px; }
+/* Unmissable play button over the video — big tap target, works on mobile. */
+.video-modal-play {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; background: rgba(10, 4, 8, 0.25); border: none; cursor: pointer; border-radius: 14px;
+}
+.video-modal-play-ring {
+  width: 88px; height: 88px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 107, 157, 0.92); color: #fff; border: 3px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px rgba(255, 107, 157, 0.5); animation: play-pulse 1.8s ease-in-out infinite;
+}
+.video-modal-play-ring svg { margin-left: 4px; }
+@keyframes play-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(255, 107, 157, 0.5); }
+  50% { transform: scale(1.08); box-shadow: 0 8px 44px rgba(255, 107, 157, 0.75); }
+}
+.video-modal-play-hint { font-family: 'Dancing Script', cursive; font-size: 1.4rem; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
 
 /* ═══ childhood ═══ */
 .childhood-inner { text-align: center; }

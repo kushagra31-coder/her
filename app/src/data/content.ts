@@ -81,12 +81,12 @@ export const VIDEOS: Video[] = [
 
 // ── "why you? ♡" ────────────────────────────────────────────────────
 export const WHY_YOU = [
-  { title: 'your mind', text: 'You think in a way that feels strangely familiar to me.' },
-  { title: 'your presence', text: "Talking to you doesn't feel like trying to find something to say." },
-  { title: 'your smile', text: "I've decided this is slightly unfair." },
-  { title: 'your randomness', text: 'Somehow your random side is one of the parts I like most.' },
-  { title: 'your energy', text: 'You have a way of making a conversation feel lighter.' },
-  { title: 'the combination', text: 'Pretty.\nSmart.\nFunny.\nA little chaotic.\nAnd somehow familiar.' },
+  { title: 'your mind', text: 'The way you think — quick, sharp, a little unexpected. Every conversation with you feels like finding a door I didn\u2019t know was there.' },
+  { title: 'your presence', text: 'Talking to you never feels like effort. It feels like the easiest part of my day, the part I keep scrolling back to.' },
+  { title: 'your smile', text: 'I\u2019ve thought about this a lot, and I\u2019ve decided it\u2019s slightly unfair. It rearranges my whole mood in about two seconds.' },
+  { title: 'your randomness', text: 'The random things you say out of nowhere — somehow that\u2019s one of my favourite parts. You keep the world interesting.' },
+  { title: 'your energy', text: 'You have this way of making everything feel lighter. Bad days get softer. Good days get brighter. It\u2019s a gift.' },
+  { title: 'the combination', text: 'Pretty.\nSmart.\nFunny.\nA little chaotic.\nAnd somehow, impossibly, familiar — like my heart recognised you before I did.' },
 ];
 
 // ── "strangely familiar" ────────────────────────────────────────────

@@ -12,6 +12,7 @@ import { Kicker, Reveal } from './ui';
 
 function VideoModal({ video, onClose }: { video: Video; onClose: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
 
   // Lock body scroll while open.
   useEffect(() => {
@@ -39,6 +40,15 @@ function VideoModal({ video, onClose }: { video: Video; onClose: () => void }) {
     };
   }, []);
 
+  // Big friendly play button: an explicit tap = a real user gesture,
+  // so playback (with sound) always starts on her terms.
+  const pressPlay = () => {
+    const el = videoRef.current;
+    if (el) {
+      el.play().catch(() => {});
+    }
+  };
+
   return (
     <motion.div
       className="video-modal"
@@ -62,15 +72,34 @@ function VideoModal({ video, onClose }: { video: Video; onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* No autoPlay: the viewer presses play explicitly. */}
-        <video
-          ref={videoRef}
-          src={video.src}
-          poster={video.poster}
-          controls
-          playsInline
-          preload="metadata"
-          className="video-modal-el"
-        />
+        <div className="video-modal-stage">
+          <video
+            ref={videoRef}
+            src={video.src}
+            poster={video.poster}
+            controls
+            playsInline
+            preload="metadata"
+            className="video-modal-el"
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onEnded={() => setPlaying(false)}
+          />
+          {/* Unmissable play button — tapping it is a real gesture, so the
+              video always starts with sound, even on fussy mobile browsers. */}
+          {!playing && (
+            <button
+              className="video-modal-play"
+              onClick={pressPlay}
+              aria-label={`play: ${video.caption}`}
+            >
+              <span className="video-modal-play-ring">
+                <Play size={30} />
+              </span>
+              <span className="video-modal-play-hint">press play ♡</span>
+            </button>
+          )}
+        </div>
         <p className="video-modal-cap">{video.caption}</p>
       </motion.div>
     </motion.div>
