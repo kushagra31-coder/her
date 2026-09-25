@@ -4,9 +4,9 @@
 
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FINAL_LINES, PHOTOS } from '../data/content';
+import { FINAL_LINES, PHOTOS, LILIES } from '../data/content';
 import { sendEggToast } from '../audio/music';
-import { FloatingHearts } from './Particles';
+import { FloatingHearts, FloatingLilyPetals } from './Particles';
 import { FocalImg } from './ui';
 
 const PORTRAIT = PHOTOS[11]; // photo_12 — the intense gaze
@@ -38,6 +38,7 @@ export function FinalSection() {
   return (
     <section id="final" className="final theme-final">
       <FloatingHearts count={30} />
+      <FloatingLilyPetals count={12} />
       <div className="final-vignette" aria-hidden="true" />
 
       <div className="section-pad final-inner">
@@ -119,6 +120,22 @@ export function FinalSection() {
           >
             — from someone who may be a little too fond of you
           </motion.p>
+
+          {/* lilies — her favorite flower, a closing gift */}
+          <motion.figure
+            className="lily-gift"
+            initial={{ opacity: 0, y: 30, rotate: -2 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 1.1, ease: 'easeOut' }}
+          >
+            <span className="lily-gift-frame">
+              <img src={LILIES.src} alt={LILIES.alt} loading="lazy" />
+            </span>
+            <figcaption className="lily-gift-caption">
+              lilies — because they're your favorite ♡
+            </figcaption>
+          </motion.figure>
         </div>
 
         <motion.button

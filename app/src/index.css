@@ -465,7 +465,7 @@ section { position: relative; transition: background 0.8s ease; }
 .confession-line-last { font-family: 'Dancing Script', cursive; font-size: clamp(1.2rem, 3.4vw, 1.6rem); color: var(--rose-soft); margin-top: 26px; }
 
 /* ═══ final ═══ */
-.final { overflow: hidden; }
+.final { overflow: hidden; position: relative; }
 .final-vignette { position: absolute; inset: 0; background: radial-gradient(75% 60% at 50% 40%, transparent 30%, rgba(8, 2, 6, 0.75) 100%); pointer-events: none; }
 .final-inner { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .final-heart {
@@ -597,4 +597,42 @@ section { position: relative; transition: background 0.8s ease; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .waveform-bar, .pill-eq i { animation: none !important; }
+}
+
+/* ═══ lilies — her favorite ═══ */
+.lily-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin: 0 auto; padding: 34px 0 6px; max-width: 560px;
+}
+.lily-divider-rule {
+  height: 1px; flex: 1;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.55;
+}
+.lily-divider-bloom { width: 54px; height: auto; opacity: 0.9; }
+
+.lily-petals { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.lily-petal {
+  position: absolute; bottom: -40px; height: auto;
+  animation-name: lily-petal-drift; animation-timing-function: linear; animation-iteration-count: infinite;
+}
+@keyframes lily-petal-drift {
+  0% { transform: translate3d(0, 0, 0) rotate(-14deg); opacity: 0; }
+  10% { opacity: var(--petal-op, 0.3); }
+  50% { transform: translate3d(var(--sway, 40px), -52vh, 0) rotate(14deg); }
+  88% { opacity: var(--petal-op, 0.3); }
+  100% { transform: translate3d(calc(var(--sway, 40px) * -0.4), -108vh, 0) rotate(-18deg); opacity: 0; }
+}
+
+.lily-gift { text-align: center; margin-top: 54px; position: relative; z-index: 1; }
+.lily-gift-frame {
+  display: inline-block; border-radius: 22px; overflow: hidden;
+  border: 1px solid rgba(255, 159, 189, 0.22);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 44px rgba(255, 111, 159, 0.10);
+  transform: rotate(-1.2deg);
+}
+.lily-gift-frame img { display: block; width: min(78vw, 340px); height: auto; }
+.lily-gift-caption {
+  margin-top: 16px; font-family: 'Dancing Script', cursive;
+  font-size: 1.25rem; color: var(--rose-soft);
 }

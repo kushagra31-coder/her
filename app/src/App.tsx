@@ -17,7 +17,7 @@ import { ConfessionSection } from './components/ConfessionSection';
 import { FinalSection } from './components/FinalSection';
 import { MusicPlayer } from './components/MusicPlayer';
 import EggToast from './components/EggToast';
-import { HeartCursorTrail } from './components/Particles';
+import { HeartCursorTrail, LilyDivider } from './components/Particles';
 
 export default function App() {
   const [opened, setOpened] = useState(false);
@@ -48,7 +48,9 @@ export default function App() {
             <CinemaSection />
             <ChildhoodSection />
             <LetterSection />
+            <LilyDivider />
             <ConfessionSection />
+            <LilyDivider />
             <FinalSection />
           </main>
         )}

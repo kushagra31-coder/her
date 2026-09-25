@@ -158,3 +158,9 @@ export const FINAL_LINES = [
   "and everything I still don't know about you...",
   "there's only one thing I'm fairly sure about.",
 ];
+
+// Lilies — her favorite flower. A closing gift in the final scene.
+export const LILIES = {
+  src: asset('assets/lilies/lilies.jpg'),
+  alt: 'white lilies for her',
+};

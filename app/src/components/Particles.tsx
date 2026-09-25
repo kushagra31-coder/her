@@ -82,6 +82,68 @@ export function Sparkle({ style }: { style?: React.CSSProperties }) {
   );
 }
 
+// Lily divider — her favorite flower, drawn as a delicate ornament
+export function LilyDivider() {
+  return (
+    <div className="lily-divider" aria-hidden="true">
+      <span className="lily-divider-rule" />
+      <svg className="lily-divider-bloom" viewBox="0 0 64 44" fill="none">
+        <path d="M32 3 C 26.5 13, 26.5 25, 32 35 C 37.5 25, 37.5 13, 32 3 Z"
+          stroke="var(--gold)" strokeWidth="1.6" fill="rgba(255,159,189,0.10)" />
+        <path d="M29 9 C 20 11, 12.5 18.5, 10.5 30 C 20 26.5, 27 19, 29 9 Z"
+          stroke="var(--gold)" strokeWidth="1.4" fill="rgba(255,159,189,0.07)" />
+        <path d="M35 9 C 44 11, 51.5 18.5, 53.5 30 C 44 26.5, 37 19, 35 9 Z"
+          stroke="var(--gold)" strokeWidth="1.4" fill="rgba(255,159,189,0.07)" />
+        <path d="M32 35 L32 41" stroke="var(--gold)" strokeWidth="1.6" strokeLinecap="round" />
+        <circle cx="32" cy="22" r="1.6" fill="var(--gold)" opacity="0.85" />
+      </svg>
+      <span className="lily-divider-rule" />
+    </div>
+  );
+}
+
+// Drifting lily petals — soft SVG petals floating upward, like the hearts
+export function FloatingLilyPetals({ count = 10 }: { count?: number }) {
+  if (typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return null;
+  }
+  const petals = Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: `${5 + Math.random() * 90}%`,
+    delay: `${Math.random() * 9}s`,
+    duration: `${11 + Math.random() * 8}s`,
+    size: 12 + Math.random() * 16,
+    sway: `${(Math.random() - 0.5) * 90}px`,
+    opacity: 0.18 + Math.random() * 0.3,
+    tint: ['#f6e3e8', '#f3cdd8', '#eec3d3', '#faf0f2'][Math.floor(Math.random() * 4)],
+  }));
+
+  return (
+    <div className="lily-petals" aria-hidden="true">
+      {petals.map(p => (
+        <svg
+          key={p.id}
+          className="lily-petal"
+          viewBox="0 0 20 28"
+          style={{
+            left: p.left,
+            width: p.size,
+            ['--sway' as string]: p.sway,
+            ['--petal-op' as string]: p.opacity,
+            animationDuration: p.duration,
+            animationDelay: p.delay,
+          }}
+        >
+          <path d="M10 1.5 C 4.5 8, 3.5 17.5, 10 26.5 C 16.5 17.5, 15.5 8, 10 1.5 Z"
+            fill={p.tint} />
+          <path d="M10 4 L10 24" stroke="rgba(190,120,140,0.45)" strokeWidth="0.8" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
 // Petal divider
 export function PetalDivider() {
   return (
