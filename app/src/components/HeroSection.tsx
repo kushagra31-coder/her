@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { PHOTOS } from '../data/content';
 import { FocalImg, Reveal } from './ui';
+import { FloatingLilyPetals } from './Particles';
 
 const HERO = PHOTOS[1]; // photo_02 — the calm direct gaze
 
@@ -23,6 +24,7 @@ export function HeroSection() {
         <img src={HERO.src} alt="" loading="eager" fetchPriority="high" draggable={false} />
         <div className="hero-bg-veil" />
       </motion.div>
+      <FloatingLilyPetals count={8} />
 
       {/* decorative hearts — margins only, never over her face */}
       <div className="hero-hearts" aria-hidden="true">

@@ -42,9 +42,11 @@ export default function App() {
             <Nav />
             <HeroSection />
             <WhyYouSection />
+            <LilyDivider />
             <GallerySection />
             <MindSection />
             <FamiliarSection />
+            <LilyDivider />
             <CinemaSection />
             <ChildhoodSection />
             <LetterSection />

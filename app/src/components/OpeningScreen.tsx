@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMusic } from '../audio/music';
-import { FloatingHearts } from './Particles';
+import { FloatingHearts, LilyBloom } from './Particles';
 
 interface OpeningScreenProps {
   onOpen: () => void;
@@ -111,6 +111,7 @@ export function OpeningScreen({ onOpen }: OpeningScreenProps) {
         </AnimatePresence>
 
         <p className="opening-hint">sound on, if you can ♡</p>
+        <div className="opening-lily" aria-hidden="true"><LilyBloom size={40} /></div>
       </motion.div>
     </motion.div>
   );

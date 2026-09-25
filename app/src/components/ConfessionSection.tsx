@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CONFESSION_LINES } from '../data/content';
 import { Reveal } from './ui';
+import { FloatingLilyPetals } from './Particles';
 
 const DRIFT_HEARTS = [0, 1, 2, 3, 4, 5, 6, 7];
 
@@ -14,6 +15,7 @@ export function ConfessionSection() {
 
   return (
     <section id="confession" className="confession theme-burgundy">
+      <FloatingLilyPetals count={8} />
       <div className="section-pad confession-inner">
         {!revealed ? (
           <Reveal className="confession-gate">

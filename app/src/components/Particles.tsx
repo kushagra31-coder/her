@@ -17,7 +17,7 @@ export function HeartCursorTrail() {
       heart.style.left = `${e.clientX - 6}px`;
       heart.style.top = `${e.clientY - 6}px`;
       heart.textContent = ['♡', '♥', '✦', '✿'][Math.floor(Math.random() * 4)];
-      heart.style.color = ['#d9806a', '#c9a84c', '#8b2635', '#f0dcd4'][Math.floor(Math.random() * 4)];
+      heart.style.color = ['#f0a8c4', '#c9a84c', '#8b2635', '#f0dcd4'][Math.floor(Math.random() * 4)];
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 1200);
     };
@@ -52,7 +52,7 @@ export function FloatingHearts({ count = 8 }: { count?: number }) {
             bottom: '-10px',
             fontSize: h.size,
             opacity: h.opacity,
-            color: '#d9806a',
+            color: '#f0a8c4',
             animation: `floatHeart ${h.duration} ${h.delay} infinite linear`,
           }}
         >
@@ -79,6 +79,22 @@ export function Sparkle({ style }: { style?: React.CSSProperties }) {
         ...style,
       }}
     />
+  );
+}
+
+// Standalone lily bloom — a small lily for inline accents
+export function LilyBloom({ size = 44 }: { size?: number }) {
+  return (
+    <svg className="lily-bloom" viewBox="0 0 64 44" fill="none" width={size} aria-hidden="true">
+      <path d="M32 3 C 26.5 13, 26.5 25, 32 35 C 37.5 25, 37.5 13, 32 3 Z"
+        stroke="var(--gold)" strokeWidth="1.6" fill="rgba(255,189,210,0.12)" />
+      <path d="M29 9 C 20 11, 12.5 18.5, 10.5 30 C 20 26.5, 27 19, 29 9 Z"
+        stroke="var(--gold)" strokeWidth="1.4" fill="rgba(255,189,210,0.08)" />
+      <path d="M35 9 C 44 11, 51.5 18.5, 53.5 30 C 44 26.5, 37 19, 35 9 Z"
+        stroke="var(--gold)" strokeWidth="1.4" fill="rgba(255,189,210,0.08)" />
+      <path d="M32 35 L32 41" stroke="var(--gold)" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="32" cy="22" r="1.6" fill="var(--gold)" opacity="0.85" />
+    </svg>
   );
 }
 
@@ -164,7 +180,7 @@ export function ConfettiBurst({ active }: { active: boolean }) {
     id: i,
     left: `${Math.random() * 100}%`,
     delay: `${Math.random() * 1.5}s`,
-    color: ['#d9806a', '#c9a84c', '#8b2635', '#f0dcd4', '#ffffff'][Math.floor(Math.random() * 5)],
+    color: ['#f0a8c4', '#c9a84c', '#8b2635', '#f0dcd4', '#ffffff'][Math.floor(Math.random() * 5)],
     char: ['✦', '♡', '✿', '·', '★'][Math.floor(Math.random() * 5)],
   }));
 
