@@ -166,19 +166,62 @@ section { position: relative; transition: background 0.8s ease; }
 .hero-scroll { margin-top: 44px; color: #b98a9a; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; display: flex; flex-direction: column; gap: 6px; align-items: center; }
 
 /* ═══ why you ═══ */
+.whyyou { position: relative; overflow: hidden; }
+.whyyou-float { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.whyyou .section-pad { position: relative; z-index: 1; }
+.whyyou-float-heart {
+  position: absolute; bottom: -48px; color: rgba(255, 111, 159, 0.28);
+  animation: whyyou-drift 14s linear infinite;
+}
+@keyframes whyyou-drift {
+  0% { transform: translateY(0) rotate(-8deg); opacity: 0; }
+  12% { opacity: 1; }
+  85% { opacity: 0.9; }
+  100% { transform: translateY(-1050px) rotate(26deg); opacity: 0; }
+}
+.whyyou-heart-beat { display: inline-block; animation: whyyou-beat 1.6s ease-in-out infinite; }
+@keyframes whyyou-beat {
+  0%, 100% { transform: scale(1); }
+  12% { transform: scale(1.28); }
+  24% { transform: scale(1); }
+}
+.whyyou-doodle { width: 190px; height: auto; margin: 2px 0 10px; transform: rotate(-1.5deg); }
 .whyyou-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 56px; }
 .whyyou-card {
   background: rgba(255, 255, 255, 0.045); border: 1px solid rgba(255, 159, 189, 0.16);
   border-radius: 20px; padding: 28px 24px; position: relative; overflow: hidden;
   transition: border-color 0.3s, background 0.3s;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
 }
 .whyyou-card:hover { border-color: rgba(255, 111, 159, 0.45); background: rgba(255, 111, 159, 0.07); }
 .whyyou-card::before { content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.whyyou-num { font-family: 'Cormorant Garamond', serif; color: var(--rose-soft); opacity: 0.6; font-size: 0.95rem; letter-spacing: 0.1em; }
+.whyyou-num {
+  display: inline-block; transform: rotate(-7deg);
+  border: 1.5px dashed rgba(255, 159, 189, 0.55); border-radius: 999px; padding: 3px 12px;
+  background: rgba(255, 111, 159, 0.08);
+  font-family: 'Cormorant Garamond', serif; color: var(--rose-soft); font-size: 0.95rem; letter-spacing: 0.1em;
+}
+.whyyou-card:hover .whyyou-num { animation: whyyou-wiggle 0.55s ease; }
+@keyframes whyyou-wiggle {
+  0%, 100% { transform: rotate(-7deg); }
+  25% { transform: rotate(7deg) scale(1.12); }
+  60% { transform: rotate(-10deg) scale(1.05); }
+}
+.whyyou-sticker-heart {
+  position: absolute; right: 14px; bottom: 10px;
+  color: rgba(255, 111, 159, 0.35); font-size: 1.3rem;
+  transform: rotate(12deg); transition: transform 0.3s, color 0.3s;
+}
+.whyyou-card:hover .whyyou-sticker-heart { transform: rotate(-10deg) scale(1.35); color: rgba(255, 111, 159, 0.85); }
 .whyyou-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; margin: 8px 0 10px; color: #ffe9f1; }
 .whyyou-card p { color: #d9aebd; line-height: 1.65; font-weight: 300; font-size: 0.98rem; white-space: pre-line; }
 .whyyou-close { text-align: center; margin-top: 70px; }
 .whyyou-yeah { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: #e9c4d2; }
+.whyyou-yeah-sticker {
+  display: inline-block; transform: rotate(-2.5deg);
+  border: 2px dashed rgba(255, 159, 189, 0.5); border-radius: 14px; padding: 6px 24px;
+  background: rgba(255, 111, 159, 0.07);
+}
 .whyyou-problem { font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--rose-soft); margin-top: 6px; }
 @media (max-width: 860px) { .whyyou-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .whyyou-grid { grid-template-columns: 1fr; } }

@@ -107,7 +107,7 @@ export const CONFESSION_LINES = [
   'tiny confession.',
   'I think I like you a little.',
   'Maybe more than a little.',
-  "But let's keep that between us.",
+  'Maybe the kind of more that rearranges a whole day around a single notification.',
 ];
 
 // ── the letter ──────────────────────────────────────────────────────

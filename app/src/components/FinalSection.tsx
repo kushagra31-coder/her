@@ -91,16 +91,6 @@ export function FinalSection() {
           ))}
 
           <motion.p
-            className="final-big"
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 1.1 }}
-          >
-            you are very, <em>very</em> easy to like.
-          </motion.p>
-
-          <motion.p
             className="final-line"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
