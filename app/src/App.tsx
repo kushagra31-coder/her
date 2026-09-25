@@ -1,24 +1,23 @@
 import { useState, useCallback } from 'react';
 import './index.css';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
 
+import { MusicProvider } from './audio/music';
 import { OpeningScreen } from './components/OpeningScreen';
+import { Nav } from './components/Nav';
 import { HeroSection } from './components/HeroSection';
-import { LetterSection } from './components/LetterSection';
+import { WhyYouSection } from './components/WhyYouSection';
 import { GallerySection } from './components/GallerySection';
-import { ChildhoodSection } from './components/ChildhoodSection';
+import { MindSection } from './components/MindSection';
+import { FamiliarSection } from './components/FamiliarSection';
 import { CinemaSection } from './components/CinemaSection';
-import { TimelineSection } from './components/TimelineSection';
-import { WishSection } from './components/WishSection';
+import { ChildhoodSection } from './components/ChildhoodSection';
+import { LetterSection } from './components/LetterSection';
+import { ConfessionSection } from './components/ConfessionSection';
 import { FinalSection } from './components/FinalSection';
 import { MusicPlayer } from './components/MusicPlayer';
+import EggToast from './components/EggToast';
 import { HeartCursorTrail } from './components/Particles';
-
-// New Sections
-import { 
-  TraitsSection, DiagramSection, SmartSection, ProfileSection, 
-  EffectSection, SecretConfession, ComplimentMachine, 
-  InfiniteScrollSection, FutureSection, SecretEnvelope 
-} from './components/NewSections';
 
 export default function App() {
   const [opened, setOpened] = useState(false);
@@ -29,42 +28,33 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      <HeartCursorTrail />
-      <OpeningScreen onOpen={handleOpen} />
+    <MotionConfig reducedMotion="user">
+      <MusicProvider>
+        <HeartCursorTrail />
+        <EggToast />
 
-      {opened && (
-        <main id="main-content" aria-label="Memory website for her">
-          <HeroSection />
-          <LetterSection />
-          <TraitsSection />
-          
-          <GallerySection />
-          
-          <SmartSection />
-          <ProfileSection />
-          
-          <ChildhoodSection />
-          <DiagramSection />
-          
-          <EffectSection />
-          <CinemaSection />
-          
-          <InfiniteScrollSection />
-          <TimelineSection />
-          
-          <SecretConfession />
-          <ComplimentMachine />
-          <SecretEnvelope />
-          
-          <WishSection />
-          <FutureSection />
-          
-          <FinalSection />
-        </main>
-      )}
+        <AnimatePresence>
+          {!opened && <OpeningScreen key="opening" onOpen={handleOpen} />}
+        </AnimatePresence>
 
-      <MusicPlayer />
-    </>
+        {opened && (
+          <main id="main-content" aria-label="a little world for her">
+            <Nav />
+            <HeroSection />
+            <WhyYouSection />
+            <GallerySection />
+            <MindSection />
+            <FamiliarSection />
+            <CinemaSection />
+            <ChildhoodSection />
+            <LetterSection />
+            <ConfessionSection />
+            <FinalSection />
+          </main>
+        )}
+
+        {opened && <MusicPlayer />}
+      </MusicProvider>
+    </MotionConfig>
   );
 }

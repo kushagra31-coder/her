@@ -1,124 +1,148 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// ── Final scene — the connected ending ────────────────────────────
+// Deep burgundy/black, slow particles, one portrait, opening-style
+// heart/glow/accent typography. Hold the heart for 2s: one last secret.
+
+import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { FINAL_LINES, PHOTOS } from '../data/content';
+import { sendEggToast } from '../audio/music';
+import { FloatingHearts } from './Particles';
+import { FocalImg } from './ui';
+
+const PORTRAIT = PHOTOS[11]; // photo_12 — the intense gaze
 
 export function FinalSection() {
-  const [step, setStep] = useState(0);
+  const [holding, setHolding] = useState(false);
+  const holdTimer = useRef<number | null>(null);
 
-  const lines = [
-    "I hope you know how beautiful you are.",
-    "Not just in photographs.",
-    "Not just because you have a pretty smile.",
-    "There's something about the way your mind works,\nthe way you carry yourself,\nand the way you somehow feel familiar\nthat makes you stand out."
-  ];
+  const beginHold = () => {
+    setHolding(true);
+    holdTimer.current = window.setTimeout(() => {
+      setHolding(false);
+      sendEggToast(['fine.', 'one last compliment.', "you're ridiculously cute."]);
+    }, 2000);
+  };
+
+  const cancelHold = () => {
+    setHolding(false);
+    if (holdTimer.current) {
+      window.clearTimeout(holdTimer.current);
+      holdTimer.current = null;
+    }
+  };
+
+  const backToTop = () => {
+    document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <section 
-      style={{ 
-        minHeight: '100vh', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        background: 'var(--bg-dark)',
-        color: 'var(--cream)',
-        padding: '20px',
-        textAlign: 'center'
-      }}
-    >
-      <div style={{ maxWidth: 600, width: '100%' }}>
-        {step === 0 && (
-          <motion.div
+    <section id="final" className="final theme-final">
+      <FloatingHearts count={30} />
+      <div className="final-vignette" aria-hidden="true" />
+
+      <div className="section-pad final-inner">
+        {/* opening-style heart — hold it */}
+        <motion.button
+          className={`final-heart ${holding ? 'charging' : ''}`}
+          onPointerDown={beginHold}
+          onPointerUp={cancelHold}
+          onPointerLeave={cancelHold}
+          onContextMenu={(e) => e.preventDefault()}
+          animate={
+            holding
+              ? { scale: 1.45 }
+              : { scale: [1, 1.07, 1] }
+          }
+          transition={
+            holding
+              ? { duration: 2, ease: 'linear' }
+              : { duration: 2.6, repeat: Infinity, ease: 'easeInOut' }
+          }
+          aria-label="hold this heart for a secret"
+          title="hold me ♡"
+        >
+          ♡
+        </motion.button>
+        <p className="final-hold-hint">(psst — hold the heart)</p>
+
+        <motion.figure
+          className="final-portrait"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+        >
+          <div className="final-glow" aria-hidden="true" />
+          <FocalImg photo={PORTRAIT} className="final-img" alt="her — the look that started all this" />
+        </motion.figure>
+
+        <div className="final-lines">
+          {FINAL_LINES.map((line, i) => (
+            <motion.p
+              key={i}
+              className="final-line"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+            >
+              {line}
+            </motion.p>
+          ))}
+
+          <motion.p
+            className="final-big"
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 1.1 }}
+          >
+            you are very, <em>very</em> easy to like.
+          </motion.p>
+
+          <motion.p
+            className="final-line"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.8 }}
+          >
+            and maybe that's my favorite thing about you.
+          </motion.p>
+
+          <motion.p
+            className="final-keep"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.8 }}
+          >
+            keep being you, okay? <span className="title-heart">♡</span>
+          </motion.p>
+
+          <motion.p
+            className="final-sign"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.3 }}
           >
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 24, marginBottom: 40, color: 'var(--rose)' }}>
-              before you leave...
-            </p>
-            <button
-              onClick={() => setStep(1)}
-              style={{
-                background: 'transparent',
-                border: '1px solid var(--cream)',
-                color: 'var(--cream)',
-                padding: '12px 24px',
-                borderRadius: 30,
-                fontFamily: 'DM Sans',
-                cursor: 'pointer',
-                transition: 'all 0.3s'
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'var(--cream)';
-                e.currentTarget.style.color = 'var(--bg-dark)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = 'var(--cream)';
-              }}
-            >
-              continue
-            </button>
-          </motion.div>
-        )}
+            — from someone who may be a little too fond of you
+          </motion.p>
+        </div>
 
-        {step > 0 && step <= lines.length && (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={step}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 1 }}
-              style={{ minHeight: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            >
-              <p style={{ 
-                fontFamily: 'Cormorant Garamond, serif', 
-                fontSize: 'clamp(24px, 4vw, 32px)', 
-                lineHeight: 1.6,
-                whiteSpace: 'pre-line'
-              }}>
-                {lines[step - 1]}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        )}
-
-        {step > 0 && step <= lines.length && (
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2 }}
-            onClick={() => setStep(s => s + 1)}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--rose)',
-              fontFamily: 'DM Sans',
-              fontSize: 14,
-              cursor: 'pointer',
-              marginTop: 40,
-              opacity: 0.7
-            }}
-          >
-            next →
-          </motion.button>
-        )}
-
-        {step > lines.length && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
-            style={{ marginTop: 60 }}
-          >
-            <p style={{ fontFamily: 'Dancing Script, cursive', fontSize: 28, color: 'var(--rose)' }}>
-              and maybe... I like that more than I should ♡
-            </p>
-            <div style={{ marginTop: 80, fontSize: 12, fontFamily: 'DM Sans', color: 'rgba(253, 246, 238, 0.4)' }}>
-              made with too many memories ♡
-            </div>
-          </motion.div>
-        )}
+        <motion.button
+          className="final-more"
+          onClick={backToTop}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+        >
+          there's more to discover ♡
+        </motion.button>
       </div>
     </section>
   );
