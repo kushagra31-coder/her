@@ -648,4 +648,10 @@ section { position: relative; transition: background 0.8s ease; }
   box-shadow: 0 12px 30px rgba(232, 93, 138, 0.25);
 }
 .section-lily { display: flex; justify-content: center; margin: 20px 0 6px; }
+/* feathered edges so the lily melts into pink gradient backgrounds */
+.single-lily-blend {
+  border-radius: 0; box-shadow: none;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 60%, transparent 97%);
+  mask-image: radial-gradient(ellipse at center, #000 60%, transparent 97%);
+}
 .hero-lily { display: flex; justify-content: center; margin-top: 14px; }
