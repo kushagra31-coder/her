@@ -111,7 +111,7 @@ export function OpeningScreen({ onOpen }: OpeningScreenProps) {
         </AnimatePresence>
 
         <p className="opening-hint">sound on, if you can ♡</p>
-        <div className="opening-lily" aria-hidden="true"><SingleLily size={88} rotate={-8} /></div>
+        <div className="opening-lily" aria-hidden="true"><SingleLily size={110} rotate={-8} className="single-lily-blend" /></div>
       </motion.div>
     </motion.div>
   );
