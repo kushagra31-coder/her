@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CONFESSION_LINES } from '../data/content';
 import { Reveal } from './ui';
-import { FloatingLilyPetals } from './Particles';
+import { FloatingLilyPetals, SingleLily } from './Particles';
 
 const DRIFT_HEARTS = [0, 1, 2, 3, 4, 5, 6, 7];
 
@@ -24,6 +24,7 @@ export function ConfessionSection() {
               there's something I probably shouldn't say <span className="title-heart">♡</span>
             </button>
             <p className="confession-hint">(tap it. you know you want to.)</p>
+            <div className="section-lily" aria-hidden="true"><SingleLily size={64} rotate={6} /></div>
           </Reveal>
         ) : (
           <div className="confession-reveal">

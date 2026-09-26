@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { GALLERY_PHOTOS, GALLERY_ASIDES, type Photo } from '../data/content';
 import { sendEggToast } from '../audio/music';
 import { BlurFrame, FocalImg, Kicker, Reveal } from './ui';
+import { SingleLily } from './Particles';
 
 const byId = (id: string): Photo => {
   const p = GALLERY_PHOTOS.find((x) => x.id === id);
@@ -82,6 +83,7 @@ export function GallerySection() {
             proof that I <em>notice</em> things <span className="title-heart">♡</span>
           </h2>
           <p className="section-sub">twenty-six little exhibits. all her.</p>
+          <div className="section-lily" aria-hidden="true"><SingleLily size={58} rotate={8} /></div>
         </Reveal>
 
         {/* cinematic opener */}

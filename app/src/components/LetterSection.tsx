@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LETTER_LINES } from '../data/content';
 import { Kicker, Reveal } from './ui';
+import { SingleLily } from './Particles';
 
 /** Hand-drawn underline that draws itself when scrolled into view. */
 function Underline({ children }: { children: string }) {
@@ -83,6 +84,7 @@ export function LetterSection() {
             something I wrote <span className="title-heart">♡</span>
           </h2>
           <p className="section-sub">go on. it's addressed to you.</p>
+          <div className="section-lily" aria-hidden="true"><SingleLily size={58} rotate={-10} /></div>
         </Reveal>
 
         <div className="envelope-stage">
