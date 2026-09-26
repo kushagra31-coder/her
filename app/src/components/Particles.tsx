@@ -1,4 +1,19 @@
 import { useEffect } from 'react';
+import { SINGLE_LILY } from '../data/content';
+
+// A single cute lily, sprinkled through the site at different spots and angles
+export function SingleLily({ size = 72, rotate = 0, className = '' }: { size?: number; rotate?: number; className?: string }) {
+  return (
+    <img
+      src={SINGLE_LILY.src}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      className={`single-lily ${className}`}
+      style={{ width: size, transform: `rotate(${rotate}deg)` }}
+    />
+  );
+}
 
 // Heart cursor trail + floating particles
 export function HeartCursorTrail() {

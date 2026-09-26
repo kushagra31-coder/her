@@ -133,7 +133,7 @@ export function FinalSection() {
               <img src={LILIES.src} alt={LILIES.alt} loading="lazy" />
             </span>
             <figcaption className="lily-gift-caption">
-              lilies — because they're your favorite ♡
+              one lily — because they're your favorite ♡
             </figcaption>
           </motion.figure>
         </div>

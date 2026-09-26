@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { PHOTOS } from '../data/content';
 import { FocalImg, Reveal } from './ui';
+import { SingleLily } from './Particles';
 import { FloatingLilyPetals } from './Particles';
 
 const HERO = PHOTOS[1]; // photo_02 — the calm direct gaze
@@ -45,6 +46,7 @@ export function HeroSection() {
           <div className="hero-glow" aria-hidden="true" />
           <FocalImg photo={HERO} eager className="hero-img" alt="her — the calm direct gaze" />
           <figcaption className="hero-caption">the camera has favorites. obviously.</figcaption>
+          <div className="hero-lily" aria-hidden="true"><SingleLily size={54} rotate={10} /></div>
         </motion.figure>
 
         <div className="hero-text">

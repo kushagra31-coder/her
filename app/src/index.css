@@ -641,3 +641,11 @@ section { position: relative; transition: background 0.8s ease; }
 
 .lily-bloom { opacity: 0.9; }
 .opening-lily { margin-top: 26px; display: flex; justify-content: center; opacity: 0.85; }
+
+/* single cute lily accents, sprinkled through the site */
+.single-lily {
+  display: inline-block; height: auto; border-radius: 26%;
+  box-shadow: 0 12px 30px rgba(232, 93, 138, 0.25);
+}
+.section-lily { display: flex; justify-content: center; margin: 20px 0 6px; }
+.hero-lily { display: flex; justify-content: center; margin-top: 14px; }

@@ -159,8 +159,14 @@ export const FINAL_LINES = [
   "there's only one thing I'm fairly sure about.",
 ];
 
-// Lilies — her favorite flower. A closing gift in the final scene.
+// Lilies — her favorite flower. A single cute lily, sprinkled through the site.
+export const SINGLE_LILY = {
+  src: asset('assets/lilies/lily-single.png'),
+  alt: 'a single lily',
+};
+
+// A closing gift in the final scene.
 export const LILIES = {
-  src: asset('assets/lilies/lilies.jpg'),
-  alt: 'white lilies for her',
+  src: asset('assets/lilies/lily-single.png'),
+  alt: 'a single lily for her',
 };
