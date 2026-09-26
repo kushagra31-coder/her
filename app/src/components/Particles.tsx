@@ -180,7 +180,7 @@ export function ConfettiBurst({ active }: { active: boolean }) {
     id: i,
     left: `${Math.random() * 100}%`,
     delay: `${Math.random() * 1.5}s`,
-    color: ['#f0a8c4', '#c9a84c', '#8b2635', '#f0dcd4', '#ffffff'][Math.floor(Math.random() * 5)],
+    color: ['#f0a8c4', '#c9a84c', '#8b2635', '#f0dcd4', '#ffd9e6'][Math.floor(Math.random() * 5)],
     char: ['✦', '♡', '✿', '·', '★'][Math.floor(Math.random() * 5)],
   }));
 
